@@ -1,6 +1,6 @@
 # Leetcode
 Problems in:
-Python
-Java
-C++
+Python, 
+Java, 
+C++, 
 SQL
