@@ -3,6 +3,8 @@ Problems in:
 Python, 
 Java, 
 C++, 
+JavaScript,
+TypeScript,
 SQL
 
 
