@@ -11,3 +11,4 @@ class Solution:
                     ret[j]=False
         # print(ret)
         return sum(ret)-2
+        
