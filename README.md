@@ -5,8 +5,8 @@ Java,
 C++, 
 JavaScript,
 TypeScript,
-SQL
-
+SQL,
+Go
 
 Questions are Medium difficulty unless otherwise stated as being Easy (E) or Hard (H) 
 
