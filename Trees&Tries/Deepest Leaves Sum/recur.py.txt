@@ -1,0 +1,23 @@
+# https://leetcode.com/problems/deepest-leaves-sum/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def deepestLeavesSum(self, root: TreeNode) -> int:
+        val=0
+        depth=0
+        def findDepth(root,height):
+            nonlocal depth,val
+            if root==None: return
+            elif height>depth: 
+                depth=height
+                val=root.val
+            elif height==depth: val+=root.val
+            findDepth(root.left,height+1)
+            findDepth(root.right,height+1)
+            
+        findDepth(root,0)
+        return val
