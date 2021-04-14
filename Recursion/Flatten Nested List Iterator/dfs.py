@@ -23,30 +23,30 @@
 
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        self.nestedList=nestedList
-        self.segment=[]
+        self.lst=[]
+        self.nested=nestedList
+        # self.dfs(nestedList)
     
-    def solveNested(self,lst):
-        for x in lst:
-            if x.isInteger(): self.segment.append(x)
-            else: self.solveNested(x.getList())
-    
+    def dfs(self, lst):
+        for l in lst:
+            if l.isInteger(): self.lst.append(l.getInteger())
+            else: self.dfs(l.getList())
+        
+                
     def next(self) -> int:
-        if len(self.segment)>0: 
-            temp=self.segment.pop(0)
-            return temp
-        temp=self.nestedList.pop(0)
-        if temp.isInteger(): return temp
-        self.solveNested(temp.getList())
-        return self.segment.pop(0)
-    
+        # print(self.lst)
+        if len(self.lst)>0: 
+            return self.lst.pop(0)
+        elif self.nested[0].isInteger():
+            # print(self.nested[0])
+            return self.nested.pop(0).getInteger()
+        else:
+            self.dfs(self.nested.pop(0).getList())
+            return self.next()
+            
+        
     def hasNext(self) -> bool:
-        if len(self.segment)>0: return True
-        elif(len(self.nestedList)>0 and not self.nestedList[0].isInteger() and len(self.nestedList[0].getList())<=1):
-            temp=self.nestedList.pop(0)
-            self.solveNested(temp.getList())
-            return self.hasNext()
-        return len(self.nestedList)>0
+         return len(self.lst)>0 or len(self.nested)>0
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
