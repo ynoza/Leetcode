@@ -4,7 +4,9 @@ Python,
 Java, 
 C++, 
 JavaScript,
-TypeScript,
+TypeScript
+
+Will be doing problems in the following soon:
 SQL,
 Go
 
