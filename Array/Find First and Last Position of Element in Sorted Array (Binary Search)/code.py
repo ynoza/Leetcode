@@ -1,26 +1,27 @@
-def searchRange(self, nums: List[int], target: int) -> List[int]:
-        def binsearch(left,right,bias,tag):
-            mid=int((left+right)/2)
-            # print(nums[mid])
-            # if bias==0:print(left,mid,right,nums[mid],bias)
-            if left>right:
-                return -1
-            elif nums[left]==tag and bias==0:
-                return left
-            elif nums[right]==tag and bias==1:
-                return right
-            # elif nums[mid] == tag:
-            #     return mid
-            elif nums[mid]<tag:
-                return binsearch(mid+1,right,bias,tag)
-            elif nums[mid]>tag:
-                return binsearch(left,mid-1,bias,tag)
-            elif bias==0:
-                return binsearch(left+1,mid,bias,tag)
-            else:
-                return binsearch(mid,right-1,bias,tag)
-                
-                
-        n=len(nums)-1
-        left=binsearch(0,n,0,target)
-        right=binsearch(0,n,1,target)
+# https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        def biniterleft(target):
+            nonlocal nums
+            l=0
+            r=len(nums)-1
+            while(l<=r):
+                mid=(l+r)//2
+                if mid==0 and nums[mid]==target: return mid
+                elif mid>0 and nums[mid]==target and nums[mid-1]<target: return mid
+                elif nums[mid]>=target: r=mid-1
+                else: l=mid+1
+            return -1
+        def biniterright(target):
+            nonlocal nums
+            l=0
+            r=len(nums)-1
+            while(l<=r):
+                mid=(l+r)//2
+                if mid==len(nums)-1 and nums[mid]==target: return mid
+                elif mid<len(nums)-1 and nums[mid]==target and nums[mid+1]>target: return mid
+                elif nums[mid]<=target: l=mid+1
+                else: r=mid-1
+            return -1
+        return [biniterleft(target),biniterright(target)]
+        
